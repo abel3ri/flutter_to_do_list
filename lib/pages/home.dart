@@ -1,3 +1,4 @@
+import 'package:firebase_local/pages/drawer.dart';
 import 'package:firebase_local/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -23,25 +24,18 @@ class _HomeState extends State<Home> {
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Colors.redAccent,
-              Colors.redAccent.withOpacity(0.5),
+              Colors.black,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
       ),
-      drawer: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(),
-          child: const Center(
-            child: Text("Drawer"),
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       childDecoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(10),
