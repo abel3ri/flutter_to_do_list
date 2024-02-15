@@ -23,7 +23,13 @@ void main(List<String> args) async {
       persistenceEnabled: false,
     );
   }
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => TasksProvider()),
+      ChangeNotifierProvider(create: (context) => TaskProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,31 +37,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => TasksProvider()),
-        ChangeNotifierProvider(create: (context) => TaskProvider()),
-      ],
-      child: MaterialApp.router(
-        routerConfig: PageRouter.router,
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.system,
-        theme: FlexThemeData.light(
-          useMaterial3: true,
-          scheme: FlexScheme.red,
-          primary: Colors.redAccent,
-          secondary: Colors.white,
-          fontFamily: GoogleFonts.poppins().fontFamily,
-        ),
-        darkTheme: FlexThemeData.dark(
-          useMaterial3: true,
-          scheme: FlexScheme.red,
-          primary: Colors.redAccent,
-          secondary: Colors.white,
-          fontFamily: GoogleFonts.poppins().fontFamily,
-        ),
-        // builder: (context, child) =>  Home(),
+    return MaterialApp.router(
+      routerConfig: PageRouter.router,
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      theme: FlexThemeData.light(
+        useMaterial3: true,
+        scheme: FlexScheme.red,
+        primary: Colors.redAccent,
+        secondary: Colors.white,
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
+      darkTheme: FlexThemeData.dark(
+        useMaterial3: true,
+        scheme: FlexScheme.red,
+        primary: Colors.redAccent,
+        secondary: Colors.white,
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
+      // builder: (context, child) =>  Home(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -5,6 +6,9 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return SafeArea(
       child: Container(
         height: MediaQuery.of(context).size.height,
@@ -32,20 +36,27 @@ class AppDrawer extends StatelessWidget {
                 const Divider(color: Colors.white, thickness: 0.3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      "Use dark theme",
+                      "Current theme",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    Switch(
-                      value: false,
-                      onChanged: (value) => {},
-                      activeColor: Colors.white,
-                      activeTrackColor: Colors.black,
+                    Text(
+                      isDarkMode
+                          ? Brightness.dark.name.capitalize
+                          : Brightness.light.name.capitalize,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            // color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 6,
                 ),
               ],
             ),
@@ -61,7 +72,7 @@ class AppDrawer extends StatelessWidget {
                   height: 6,
                 ),
                 Text(
-                  "V 1.0",
+                  "V 1.0.0",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,

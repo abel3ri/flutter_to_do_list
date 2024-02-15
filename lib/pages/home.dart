@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
                                 Theme.of(context).scaffoldBackgroundColor,
                             radius: 30,
                             child: Icon(
-                              Icons.menu,
+                              value.visible ? Icons.close : Icons.menu,
                               size: 35,
                               color:
                                   Theme.of(context).textTheme.bodyMedium!.color,
