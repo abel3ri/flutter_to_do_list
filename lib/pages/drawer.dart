@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -11,37 +9,65 @@ class AppDrawer extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: MediaQuery.of(context).size.height * 0.1,
+        padding: EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: MediaQuery.of(context).size.height * 0.1,
+          bottom: MediaQuery.of(context).size.height * 0.05,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Menu",
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 36,
-                  ),
-            ),
-            const Divider(color: Colors.white, thickness: 0.3),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Use dark theme",
+                Text(
+                  "Menu",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 36,
+                      ),
+                ),
+                const Divider(color: Colors.white, thickness: 0.3),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Use dark theme",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Switch(
+                      value: false,
+                      onChanged: (value) => {},
+                      activeColor: Colors.white,
+                      activeTrackColor: Colors.black,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.telegram,
+                  color: Colors.blue,
+                  size: 36,
+                ),
+                SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  "V 1.0",
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                Switch(
-                  value: false,
-                  onChanged: (value) => {},
-                  activeColor: Colors.white,
-                  activeTrackColor: Colors.black,
-                ),
+                )
               ],
             ),
           ],
