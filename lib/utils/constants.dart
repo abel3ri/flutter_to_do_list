@@ -19,5 +19,6 @@ class AppConstants {
 
 String host = Platform.isAndroid ? "10.0.2.2" : "localhost";
 bool useEmulator = false;
+String telegramUserName = "https://t.me/A_be_l";
 
 FirebaseFirestore db = FirebaseFirestore.instance;

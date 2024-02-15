@@ -1,5 +1,7 @@
+import 'package:firebase_local/utils/constants.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -8,6 +10,13 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    Future<void> _launchTelegramUrl() async {
+      await launchUrl(
+        Uri.parse(telegramUserName),
+        mode: LaunchMode.externalApplication,
+      );
+    }
 
     return SafeArea(
       child: Container(
@@ -60,18 +69,18 @@ class AppDrawer extends StatelessWidget {
                 ),
               ],
             ),
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.telegram,
-                  color: Colors.blue,
-                  size: 36,
+                IconButton(
+                  onPressed: _launchTelegramUrl,
+                  icon:
+                      const Icon(Icons.telegram, color: Colors.blue, size: 36),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
-                Text(
+                const Text(
                   "V 1.0.0",
                   style: TextStyle(
                     color: Colors.white,
